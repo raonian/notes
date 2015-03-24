@@ -4,10 +4,17 @@
   -webkit-tap-highlight-color:rgba(255,255,255,0);
   
   便可以隐藏这个效果。
-  但是，android手机上目前对这个属性还不支持。
-  不过最近在做项目的时候，忽然发现一个比较好的解决方案：
-  在你绑定click事件的元素上添加一个样式：
   
-  opacity:0.99;
+  但是，android手机上目前加上这个属性没有效果。
   
-  这样就不会有高亮的效果。
+  不过最近在做的项目发现，需要用到事件委托的 时候，父元素上绑定了click事件，然而目标元素上如果添加了opacity样式，便不会产生高亮的效果。
+  如：
+  <div onclick="fn()">
+	<p style="opacity:0.99;"></p>
+	<p style="opacity:0.99;"></p>
+	<p style="opacity:0.99;"></p>
+	<p style="opacity:0.99;"></p>
+  </div>
+  
+  如果点击事件的srcElement是p，就不会有高亮的效果。
+  目前这种方法是我知道的最理想的解决办法了。
